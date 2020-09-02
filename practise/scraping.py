@@ -43,7 +43,7 @@ def mars_news(browser):
         news_title = slide_elem.find("div", class_="content_title").get_text()
         # Use the parent element to find the paragraph text
         news_p = slide_elem.find("div", class_="article_teaser_body").get_text()
-        except AttributeError:
+    except AttributeError:
             return None, None
    
     return news_title, news_p
@@ -95,9 +95,11 @@ def mars_facts():
     df.set_index('Description', inplace=True)
 
     # Convert dataframe into HTML format, add bootstrap
-    return df.to_html()
+    return df.to_html(classes="table table-striped")
 
 
-browser.quit()
+if __name__ == "__main__":
 
+    # If running as script, print scraped data
+    print(scrape_all())
 
